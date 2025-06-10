@@ -1,6 +1,6 @@
 // src/screens/HomeScreen.js
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, FlatList, ActivityIndicator, StyleSheet, SafeAreaView } from 'react-native';
 import ArticleCard from '../components/ArticleCard';
 import { fetchHeadlines } from '../services/newsApi';
 
@@ -28,16 +28,18 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <FlatList
-      data={articles}
-      keyExtractor={(item) => item.url}
-      renderItem={({ item }) => (
-        <ArticleCard
-          article={item}
-          onPress={() => navigation.navigate('Detail', { article: item })}
-        />
-      )}
-    />
+    <SafeAreaView>
+      <FlatList
+        data={articles}
+        keyExtractor={(item) => item.url}
+        renderItem={({ item }) => (
+          <ArticleCard
+            article={item}
+            onPress={() => navigation.navigate('Detail', { article: item })}
+          />
+        )}
+      />
+    </SafeAreaView>
   );
 };
 
